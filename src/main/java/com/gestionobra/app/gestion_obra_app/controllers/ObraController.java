@@ -3,6 +3,7 @@ package com.gestionobra.app.gestion_obra_app.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class ObraController {
 
     @PostMapping
     public ResponseEntity<ObraDTO> crearObra(@RequestBody ObraDTO obra){
-        obraService.crearObra(obra);
-        return ResponseEntity.ok(obra);
+        ObraDTO obraCreada = obraService.crearObra(obra);
+        return ResponseEntity.status(HttpStatus.CREATED).body(obraCreada);
     }
 }

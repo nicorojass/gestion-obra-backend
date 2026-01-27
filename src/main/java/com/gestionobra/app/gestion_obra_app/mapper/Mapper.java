@@ -11,6 +11,7 @@ public class Mapper {
 
         ObraDTO dto = new ObraDTO();
 
+        dto.setId(o.getId());
         dto.setNombre(o.getNombre());
         dto.setDescripcion(o.getDescripcion());
         dto.setUbicacion(o.getUbicacion());

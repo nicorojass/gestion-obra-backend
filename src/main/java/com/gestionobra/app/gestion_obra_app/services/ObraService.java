@@ -23,10 +23,8 @@ public class ObraService {
         obraGuardada.setNombre(o.getNombre());
         obraGuardada.setDescripcion(o.getDescripcion());
         obraGuardada.setUbicacion(o.getUbicacion());
-        
-        Obra obraPersistida = obraRepository.save(obraGuardada);
 
-        return Mapper.toDto(obraPersistida);
+        return Mapper.toDto(obraRepository.save(obraGuardada));
     }
 
     public List<ObraDTO> traerObras(){
