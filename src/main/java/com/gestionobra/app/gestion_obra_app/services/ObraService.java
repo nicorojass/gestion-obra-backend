@@ -31,6 +31,10 @@ public class ObraService {
         return obraRepository.findAll().stream().map(Mapper::toDto).toList();
     }
 
+    public ObraDTO traerObraPorId(Long id){
+        return obraRepository.findById(id).map(Mapper::toDto).orElseThrow(() -> new NotFoundException("Obra no encontrada"));
+    }
+
     public ObraDTO actualizarObra(Long id, ObraDTO o){
         
         Obra obra = obraRepository.findById(id).orElseThrow(() -> new NotFoundException("Obra no encontrada"));

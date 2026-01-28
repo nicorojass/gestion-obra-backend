@@ -16,7 +16,7 @@ public class MaterialDTO {
 
     private Long id;
     private String nombre;
-    private TipoMaterial tipoMaterial;
+    private TipoMaterial tipo;
     private UnidadMedida unidadMedida;
     
     private Double cantidadEstimada;

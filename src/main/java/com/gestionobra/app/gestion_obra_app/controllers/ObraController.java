@@ -35,6 +35,11 @@ public class ObraController {
         return ResponseEntity.ok(obraService.traerObras());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ObraDTO> traerObraPorId(@PathVariable Long id){
+        return ResponseEntity.ok(obraService.traerObraPorId(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ObraDTO> actualizarObra(@PathVariable Long id, @RequestBody ObraDTO obra){
         ObraDTO obraActualizada = obraService.actualizarObra(id, obra);
