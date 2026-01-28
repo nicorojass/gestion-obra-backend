@@ -29,4 +29,22 @@ public class ObraController {
         ObraDTO obraCreada = obraService.crearObra(obra);
         return ResponseEntity.status(HttpStatus.CREATED).body(obraCreada);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ObraDTO>> traerObras(){
+        return ResponseEntity.ok(obraService.traerObras());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ObraDTO> actualizarObra(@PathVariable Long id, @RequestBody ObraDTO obra){
+        ObraDTO obraActualizada = obraService.actualizarObra(id, obra);
+        return ResponseEntity.ok(obraActualizada);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarObra (@PathVariable Long id){
+        obraService.eliminarObra(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
