@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.ObraDTO;
 import com.gestionobra.app.gestion_obra_app.exceptions.NotFoundException;
 import com.gestionobra.app.gestion_obra_app.mapper.Mapper;
+import com.gestionobra.app.gestion_obra_app.models.Material;
 import com.gestionobra.app.gestion_obra_app.models.Obra;
+import com.gestionobra.app.gestion_obra_app.repositories.MaterialRepository;
 import com.gestionobra.app.gestion_obra_app.repositories.ObraRepository;
 
 @Service
@@ -16,6 +19,7 @@ public class ObraService {
 
     @Autowired
     private ObraRepository obraRepository;
+
 
     public ObraDTO crearObra(ObraDTO o){
         Obra obraGuardada = new Obra();
@@ -55,10 +59,5 @@ public class ObraService {
 
         obraRepository.deleteById(id);
     }
-
-    
-
-
-
 
 }

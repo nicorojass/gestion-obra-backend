@@ -74,4 +74,13 @@ public class MaterialService {
         materialRepository.deleteById(id);
     }
 
+    public List<MaterialDTO> traerMaterialesPorObra(Long id){
+
+        if (!obraRepository.existsById(id)){
+            throw new NotFoundException("Obra no encontrada");
+        }
+
+        return materialRepository.findByObraId(id).stream().map(Mapper::toDto).toList();
+
+    }
 }

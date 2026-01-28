@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.ObraDTO;
+import com.gestionobra.app.gestion_obra_app.services.MaterialService;
 import com.gestionobra.app.gestion_obra_app.services.ObraService;
 
 @RestController
@@ -22,7 +24,14 @@ import com.gestionobra.app.gestion_obra_app.services.ObraService;
 public class ObraController {
 
     @Autowired
+    private MaterialService materialService;
+
+    @Autowired
     private ObraService obraService;
+
+    ObraController(MaterialService materialService) {
+        this.materialService = materialService;
+    }
 
     @PostMapping
     public ResponseEntity<ObraDTO> crearObra(@RequestBody ObraDTO obra){
@@ -50,6 +59,11 @@ public class ObraController {
     public ResponseEntity<Void> eliminarObra (@PathVariable Long id){
         obraService.eliminarObra(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/materiales")
+    public ResponseEntity<List<MaterialDTO>> traerMaterialesPorObraId(@PathVariable Long id){
+        return ResponseEntity.ok(materialService.traerMaterialesPorObra(id));
     }
 
 }
