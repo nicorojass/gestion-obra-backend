@@ -30,7 +30,7 @@ public class CertificadoAvance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private LocalDateTime fechacreacion;
+    private LocalDateTime fechaCreacion;
     private String descripcionTrabajo;
     private Integer porcentajeAvance;
     private BigDecimal montoCertificado;

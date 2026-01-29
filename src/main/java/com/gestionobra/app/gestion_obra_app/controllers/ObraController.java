@@ -29,10 +29,6 @@ public class ObraController {
     @Autowired
     private ObraService obraService;
 
-    ObraController(MaterialService materialService) {
-        this.materialService = materialService;
-    }
-
     @PostMapping
     public ResponseEntity<ObraDTO> crearObra(@RequestBody ObraDTO obra){
         ObraDTO obraCreada = obraService.crearObra(obra);

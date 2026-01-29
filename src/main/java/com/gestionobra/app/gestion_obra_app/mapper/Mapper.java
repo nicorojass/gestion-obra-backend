@@ -1,7 +1,11 @@
 package com.gestionobra.app.gestion_obra_app.mapper;
 
+import com.gestionobra.app.gestion_obra_app.dtos.CertificadoAvanceDTO;
+import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.ObraDTO;
+import com.gestionobra.app.gestion_obra_app.models.CertificadoAvance;
+import com.gestionobra.app.gestion_obra_app.models.CertificadoMaterial;
 import com.gestionobra.app.gestion_obra_app.models.Material;
 import com.gestionobra.app.gestion_obra_app.models.Obra;
 
@@ -21,6 +25,7 @@ public class Mapper {
         return dto;
     } 
 
+    // Material a MaterialDTO
     public static MaterialDTO toDto(Material m){
         if (m == null) return null;
 
@@ -40,6 +45,41 @@ public class Mapper {
         return dto;
     }
 
+    // CertificadoAvance a CertificadoAvanceDTO
+    public static CertificadoAvanceDTO toDto(CertificadoAvance c){
+        if (c == null) return null;
+
+        CertificadoAvanceDTO dto = new CertificadoAvanceDTO();
+
+        dto.setId(c.getId());
+        dto.setFechaCreacion(c.getFechaCreacion());
+        dto.setDescripcionTrabajo(c.getDescripcionTrabajo());
+        dto.setMontoTotal(c.getMontoCertificado());
+        dto.setPorcentajeAvance(c.getPorcentajeAvance());
+        dto.setObraId(c.getObra().getId());
+
+        if (c.getMaterialesUtilizados() != null) {
+        dto.setMateriales(
+            c.getMaterialesUtilizados()
+             .stream()
+             .map(Mapper::toDto)
+             .toList()
+            );
+        }
+
+        return dto;
+    }
+
+    // CertificadoMaterial a CertificadoMaterialDTO
+    public static CertificadoMaterialDTO toDto(CertificadoMaterial cm) {
+    if (cm == null) return null;
+
+    CertificadoMaterialDTO dto = new CertificadoMaterialDTO();
+    dto.setMaterialId(cm.getMaterial().getId());
+    dto.setCantidadUtilizada(cm.getCantidadUtilizada());
+
+    return dto;
+}
     
 
 
