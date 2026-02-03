@@ -10,5 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CertificadoMaterialDTO {
     private Long materialId;
-    private Integer cantidadUtilizada;
+    private Double cantidadUtilizada;
 }

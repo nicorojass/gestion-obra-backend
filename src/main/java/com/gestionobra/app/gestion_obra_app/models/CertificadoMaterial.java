@@ -32,5 +32,5 @@ public class CertificadoMaterial {
     @JoinColumn(name = "material_id")
     private Material material;
 
-    private Integer cantidadUtilizada;
+    private Double cantidadUtilizada;
 }
