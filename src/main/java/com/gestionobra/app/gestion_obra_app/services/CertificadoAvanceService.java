@@ -114,11 +114,14 @@ public class CertificadoAvanceService {
         certificadoRepository.deleteById(id);
     }
 
+    public List<CertificadoAvanceDTO> traerCertificadosPorObra(Long id){
 
+        if (!obraRepository.existsById(id)){
+            throw new NotFoundException("Obra no encontrada");
+        }
 
+        return certificadoRepository.findByObraId(id).stream().map(Mapper::toDto).toList();
 
-
-
-
+    }
 
 }

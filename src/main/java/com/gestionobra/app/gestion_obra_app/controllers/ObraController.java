@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestionobra.app.gestion_obra_app.dtos.CertificadoAvanceDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.ObraDTO;
+import com.gestionobra.app.gestion_obra_app.models.CertificadoAvance;
+import com.gestionobra.app.gestion_obra_app.services.CertificadoAvanceService;
 import com.gestionobra.app.gestion_obra_app.services.MaterialService;
 import com.gestionobra.app.gestion_obra_app.services.ObraService;
+
+import io.micrometer.core.ipc.http.HttpSender.Response;
 
 @RestController
 @RequestMapping("/api/obras")
@@ -28,6 +33,9 @@ public class ObraController {
 
     @Autowired
     private ObraService obraService;
+
+    @Autowired
+    private CertificadoAvanceService certificadoService;
 
     @PostMapping
     public ResponseEntity<ObraDTO> crearObra(@RequestBody ObraDTO obra){
@@ -61,5 +69,11 @@ public class ObraController {
     public ResponseEntity<List<MaterialDTO>> traerMaterialesPorObraId(@PathVariable Long id){
         return ResponseEntity.ok(materialService.traerMaterialesPorObra(id));
     }
+
+    @GetMapping("/{id}/certificados-avance")
+    public ResponseEntity<List<CertificadoAvanceDTO>> traerCertificadosPorObraId(@PathVariable Long id){
+        return ResponseEntity.ok(certificadoService.traerCertificadosPorObra(id));
+    }
+
 
 }

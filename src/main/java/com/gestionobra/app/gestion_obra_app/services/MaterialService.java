@@ -10,6 +10,8 @@ import com.gestionobra.app.gestion_obra_app.exceptions.NotFoundException;
 import com.gestionobra.app.gestion_obra_app.mapper.Mapper;
 import com.gestionobra.app.gestion_obra_app.models.Material;
 import com.gestionobra.app.gestion_obra_app.models.Obra;
+import com.gestionobra.app.gestion_obra_app.repositories.CertificadoAvanceRepository;
+import com.gestionobra.app.gestion_obra_app.repositories.CertificadoMaterialRepository;
 import com.gestionobra.app.gestion_obra_app.repositories.MaterialRepository;
 import com.gestionobra.app.gestion_obra_app.repositories.ObraRepository;
 
@@ -21,6 +23,13 @@ public class MaterialService {
 
     @Autowired
     private ObraRepository obraRepository;
+
+    @Autowired
+    private CertificadoAvanceRepository certificadoRepository;
+
+    @Autowired
+    private CertificadoMaterialRepository cMRepository;
+
 
     public MaterialDTO crearMaterial(MaterialDTO material){
         Material materialGuardado = new Material();
@@ -83,4 +92,5 @@ public class MaterialService {
         return materialRepository.findByObraId(id).stream().map(Mapper::toDto).toList();
 
     }
+    
 }
