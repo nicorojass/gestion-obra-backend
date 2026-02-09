@@ -1,7 +1,10 @@
 package com.gestionobra.app.gestion_obra_app.mapper;
 
+import java.math.BigDecimal;
+
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoAvanceDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDTO;
+import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDetalleDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.ObraDTO;
 import com.gestionobra.app.gestion_obra_app.models.CertificadoAvance;
@@ -80,10 +83,24 @@ public class Mapper {
 
     return dto;
 }
-    
 
+    public static CertificadoMaterialDetalleDTO toDetalleDto(CertificadoMaterial cm) {
 
+    CertificadoMaterialDetalleDTO dto = new CertificadoMaterialDetalleDTO();
 
+    dto.setMaterialId(cm.getMaterial().getId());
+    dto.setNombreMaterial(cm.getMaterial().getNombre());
+    dto.setCantidadUtilizada(cm.getCantidadUtilizada());
 
+    dto.setPrecioUnitario(cm.getMaterial().getPrecioUnitario());
+
+    BigDecimal subtotal =
+        cm.getMaterial().getPrecioUnitario()
+          .multiply(BigDecimal.valueOf(cm.getCantidadUtilizada()));
+
+    dto.setSubtotal(subtotal);
+
+    return dto;
+}
     
 }

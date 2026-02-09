@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoAvanceDTO;
+import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDetalleDTO;
 import com.gestionobra.app.gestion_obra_app.services.CertificadoAvanceService;
 
 @RestController
@@ -50,6 +51,15 @@ public class CertificadoAvanceController {
     public ResponseEntity<Void> eliminarCertificado(@PathVariable Long id){
         certificadoAvanceService.eliminarCertificado(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/materiales")
+    public ResponseEntity<List<CertificadoMaterialDetalleDTO>> getMaterialesDelCertificado(
+        @PathVariable Long id) {
+
+    return ResponseEntity.ok(
+            certificadoAvanceService.obtenerMaterialesDelCertificado(id)
+        );
     }
 
 }

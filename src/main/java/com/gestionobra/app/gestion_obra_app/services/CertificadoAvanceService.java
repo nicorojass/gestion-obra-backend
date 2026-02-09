@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoAvanceDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDTO;
+import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDetalleDTO;
 import com.gestionobra.app.gestion_obra_app.exceptions.NotFoundException;
 import com.gestionobra.app.gestion_obra_app.mapper.Mapper;
 import com.gestionobra.app.gestion_obra_app.models.CertificadoAvance;
@@ -123,5 +124,18 @@ public class CertificadoAvanceService {
         return certificadoRepository.findByObraId(id).stream().map(Mapper::toDto).toList();
 
     }
+
+    public List<CertificadoMaterialDetalleDTO> obtenerMaterialesDelCertificado(Long certificadoId) {
+
+    CertificadoAvance certificado =
+            certificadoRepository.findByIdConMateriales(certificadoId)
+                    .orElseThrow(() -> new NotFoundException("Certificado no encontrado"));
+
+    return certificado.getMaterialesUtilizados()
+            .stream()
+            .map(Mapper::toDetalleDto)
+            .toList();
+}
+
 
 }
