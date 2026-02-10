@@ -19,6 +19,8 @@ import com.gestionobra.app.gestion_obra_app.dtos.CertificadoAvanceDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDetalleDTO;
 import com.gestionobra.app.gestion_obra_app.services.CertificadoAvanceService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/certificados-avance")
 public class CertificadoAvanceController {
@@ -27,7 +29,7 @@ public class CertificadoAvanceController {
     CertificadoAvanceService certificadoAvanceService;
 
     @PostMapping
-    public ResponseEntity<CertificadoAvanceDTO> crearCertificado(@RequestBody CertificadoAvanceDTO certificado){
+    public ResponseEntity<CertificadoAvanceDTO> crearCertificado(@Valid @RequestBody CertificadoAvanceDTO certificado){
         CertificadoAvanceDTO certificadoCreado = certificadoAvanceService.crearCertificado(certificado);
         return ResponseEntity.status(HttpStatus.CREATED).body(certificadoCreado);
     }
@@ -43,7 +45,7 @@ public class CertificadoAvanceController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CertificadoAvanceDTO> actualizarCertificado(@PathVariable Long id, @RequestBody CertificadoAvanceDTO certificado){
+    public ResponseEntity<CertificadoAvanceDTO> actualizarCertificado(@PathVariable Long id, @Valid @RequestBody CertificadoAvanceDTO certificado){
         return ResponseEntity.ok(certificadoAvanceService.actualizarCertificado(id, certificado));
     }
 

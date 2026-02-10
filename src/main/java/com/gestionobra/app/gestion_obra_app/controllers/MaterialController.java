@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.services.MaterialService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/materiales")
 public class MaterialController {
@@ -26,7 +28,7 @@ public class MaterialController {
     private MaterialService materialService;
 
     @PostMapping
-    public ResponseEntity<MaterialDTO> crearMaterial(@RequestBody MaterialDTO material){
+    public ResponseEntity<MaterialDTO> crearMaterial(@Valid @RequestBody MaterialDTO material){
         MaterialDTO materialCreado = materialService.crearMaterial(material);
         return ResponseEntity.status(HttpStatus.CREATED).body(materialCreado);
     }
@@ -42,7 +44,7 @@ public class MaterialController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MaterialDTO> actualizarMaterial(@PathVariable Long id, @RequestBody MaterialDTO material){
+    public ResponseEntity<MaterialDTO> actualizarMaterial(@PathVariable Long id, @Valid @RequestBody MaterialDTO material){
         return ResponseEntity.ok(materialService.actualizarMaterial(id, material));
     }
 

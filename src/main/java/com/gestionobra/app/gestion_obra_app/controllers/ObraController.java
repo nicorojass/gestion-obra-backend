@@ -23,6 +23,7 @@ import com.gestionobra.app.gestion_obra_app.services.MaterialService;
 import com.gestionobra.app.gestion_obra_app.services.ObraService;
 
 import io.micrometer.core.ipc.http.HttpSender.Response;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/obras")
@@ -38,7 +39,7 @@ public class ObraController {
     private CertificadoAvanceService certificadoService;
 
     @PostMapping
-    public ResponseEntity<ObraDTO> crearObra(@RequestBody ObraDTO obra){
+    public ResponseEntity<ObraDTO> crearObra(@Valid @RequestBody ObraDTO obra){
         ObraDTO obraCreada = obraService.crearObra(obra);
         return ResponseEntity.status(HttpStatus.CREATED).body(obraCreada);
     }
@@ -54,7 +55,7 @@ public class ObraController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ObraDTO> actualizarObra(@PathVariable Long id, @RequestBody ObraDTO obra){
+    public ResponseEntity<ObraDTO> actualizarObra(@PathVariable Long id, @Valid @RequestBody ObraDTO obra){
         ObraDTO obraActualizada = obraService.actualizarObra(id, obra);
         return ResponseEntity.ok(obraActualizada);
     }
