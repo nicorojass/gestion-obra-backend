@@ -109,6 +109,11 @@ El backend está organizado siguiendo buenas prácticas:
 | POST | `/api/certificados-avance` |
 | DELETE | `/api/certificados-avance/{id}` |
 
+## API Documentation
+
+Swagger UI available at:
+http://localhost:8080/swagger-ui/index.html
+
 ---
 
 ## ⚙️ Instalación y ejecución local
