@@ -7,10 +7,12 @@ import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.CertificadoMaterialDetalleDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.MaterialDTO;
 import com.gestionobra.app.gestion_obra_app.dtos.ObraDTO;
+import com.gestionobra.app.gestion_obra_app.dtos.UsuarioDTO;
 import com.gestionobra.app.gestion_obra_app.models.CertificadoAvance;
 import com.gestionobra.app.gestion_obra_app.models.CertificadoMaterial;
 import com.gestionobra.app.gestion_obra_app.models.Material;
 import com.gestionobra.app.gestion_obra_app.models.Obra;
+import com.gestionobra.app.gestion_obra_app.models.Usuario;
 
 public class Mapper {
 
@@ -102,5 +104,16 @@ public class Mapper {
 
     return dto;
 }
+
+    public static UsuarioDTO toDto(Usuario u) {
+        if (u == null) return null;
+
+        UsuarioDTO dto = new UsuarioDTO();
+        dto.setId(u.getId());
+        dto.setNombre(u.getNombre());
+        dto.setEmail(u.getEmail());
+
+        return dto;
+    }
     
 }
