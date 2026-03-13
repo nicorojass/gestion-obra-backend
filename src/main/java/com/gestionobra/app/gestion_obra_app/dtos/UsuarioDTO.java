@@ -28,4 +28,7 @@ public class UsuarioDTO {
     @Size(min = 8, message = "La contraseña debe tener al menos 6 caracteres")
     private String password;
 
+    @NotNull(message = "El rol es obligatorio")
+    private Rol rol;
+
 }

@@ -3,6 +3,7 @@ package com.gestionobra.app.gestion_obra_app.models;
 import com.gestionobra.app.gestion_obra_app.models.enums.Rol;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,7 +28,9 @@ public class Usuario {
         private Long id;
 
         private String nombre;
+
         private String email;
+        
         private String password;
 
         @Enumerated(EnumType.STRING)

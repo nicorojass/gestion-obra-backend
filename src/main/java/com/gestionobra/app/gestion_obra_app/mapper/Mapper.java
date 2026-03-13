@@ -109,9 +109,11 @@ public class Mapper {
         if (u == null) return null;
 
         UsuarioDTO dto = new UsuarioDTO();
+
         dto.setId(u.getId());
         dto.setNombre(u.getNombre());
         dto.setEmail(u.getEmail());
+        dto.setRol(u.getRol());
 
         return dto;
     }
